@@ -5,15 +5,19 @@ body {
 
 li{
 	display: block;
-	width: 80%;
-	height: 200px;
+	width: 100%;
+	height: 700px;
+
 }
+
+.content{
+		color: #ffffff;
+		padding: 30px;
+	}
 
 ul{
 	display: block;
 	width: 100%;
+	padding: 0;
 }
 
-.player2-wrapper{
-	height: 500px;
-}
