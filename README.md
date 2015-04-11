@@ -18,8 +18,9 @@ This is a light-weight vannila javascript youtube backgroud plug-in that allow y
 <strong>Usage: </strong>
 It is super simpel to use: all it needs is the id of your Youtube video(<a href="https://www.youtube.com/watch?v=EKyirtVHsK0">here is a tutorial on how to find the ID for your yourtube video</a>)
 
-var el = document.getElementById("player");
-var player = new TubeVideo(el, {videoId: 'gxCaDMB6y18'});
+<code>var el = document.getElementById("player");</code> <br>
+<code>var player = new TubeVideo(el, {videoId: 'gxCaDMB6y18'});
+</code>
 
 ======
 <strong>Configurable <strong>
