@@ -1,3 +1,16 @@
+/* Javascript Youtube Video Background Plugin
+|* by Chloe Chen
+|* chloechen.io/tubeVideo
+|* on how to use please see https://github.com/chloeleichen/Javascript-Youtube-Background
+|* version: 1.0
+|* updated: Apr 12 2015
+|* since 2014
+|* licensed under the MIT License
+|* Enjoy.
+|* 
+|* Thanks,
+|* Chloe */
+
 ;(function (window) { 
   'use strict';
   /**
