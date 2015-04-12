@@ -4,7 +4,7 @@
   * @function extend
   * Deep extend(recursive),by http://andrewdupont.net/2009/08/28/deep-extending-objects-in-javascript/
   */
-  
+
   function extend (destination, source) {
     for (var property in source) {
       if (source[property] && source[property].constructor &&
@@ -157,14 +157,18 @@
             if (width / self.options.ratio < height) {
                 pWidth = Math.ceil(height * self.options.ratio); // get new player width
                 self._getPlayer().setSize(pWidth,height);
-                player.style.left = (width - pWidth) / 2;
+                player.style.marginLeft = ((width - pWidth) / 2) + 'px';
                 player.style.top = 0;
+                console.log((width - pWidth) / 2);
+
+            
                  // player width is greater, offset left; reset top
               } else { // new video width < window width (gap to right)
-                pHeight = Math.ceil(width / self.options.ratio); // get new player width
+                pHeight = Math.ceil(width / self.options.ratio); // get new player height
                 self._getPlayer().setSize(width,pHeight);
                 player.style.left = 0;
                 player.style.top = 0;
+
               }
             },
 
@@ -176,7 +180,7 @@
           var self = this;
           self.player = null;
           self.player = new window.YT.Player(self.holderID, self.options);
-          console.log(self.player);
+          //console.log(self.player);
 
         },
 
@@ -231,7 +235,7 @@
           }); 
           loadAPI(self._onYouTubeIframeAPIReady.bind(self));
           return self;
-          
+
         },
         
       }
