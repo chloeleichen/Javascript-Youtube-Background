@@ -14,6 +14,8 @@ Integrate or build upon it for free in your personal or commercial projects.
 ======
 This is a light-weight vannila javascript youtube backgroud plug-in that allow you to create youtube background videos. The video will cover the entire container to which the object is created on. 
 
+It Supports multiple video player instances on one page.
+
 ======
 <strong>Usage: </strong>
 It is super simpel to use: all it needs is the id of your Youtube video(<a href="https://www.youtube.com/watch?v=EKyirtVHsK0">here is a tutorial on how to find the ID for your yourtube video</a>)
