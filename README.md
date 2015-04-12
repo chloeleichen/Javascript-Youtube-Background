@@ -1,7 +1,7 @@
 # Javascript-Youtube-Background
 AKA TubeVideo
 
-<strong>light-weight vannila javascript youtube backgroud maker (no need for jQuery or any other libraies, only 2KB minified)<strong>
+<strong>light-weight vannila javascript youtube backgroud maker (no need for jQuery or any other libraies, only 2KB minified), supports multiple video player instances on one page<strong>
 
 Created by <a href="http://chloechen.io">Chloe Chen</a>
 
@@ -14,7 +14,7 @@ Integrate or build upon it for free in your personal or commercial projects.
 ======
 This is a light-weight vannila javascript youtube backgroud plug-in that allow you to create youtube background videos. The video will cover the entire container to which the object is created on. 
 
-It Supports multiple video player instances on one page.
+It supports multiple video player instances on one page, so you can have different video background for different regions! 
 
 ======
 <strong>Usage: </strong>
@@ -27,20 +27,20 @@ It is super simpel to use: all it needs is the id of your Youtube video(<a href=
 ======
 <strong>Configurable <strong>
 
-ratio: 16 / 9,
-videoId: 'gxCaDMB6y18',
-mute: true,
-repeat: true,
-width: window.innerWidth,
-start: 0,
-modestbranding: 1,
-autoplay: 1,
-controls: 0,
-showinfo: 0,
-wmode: 'transparent',
-branding: 0,
-rel: 0,
-autohide: 0
+<code>ratio: 16 / 9,</code> <br>
+<code>videoId: 'gxCaDMB6y18',</code> <br>
+<code>mute: true,</code> <br>
+<code>repeat: true,</code> <br>
+<code>width: window.innerWidth,</code> <br>
+<code>start: 0,</code> <br>
+<code>modestbranding: 1,</code> <br>
+<code>autoplay: 1,</code> <br>
+<code>controls: 0,</code> <br>
+<code>showinfo: 0,</code> <br>
+<code>wmode: 'transparent',</code> <br>
+<code>branding: 0,</code> <br>
+<code>rel: 0,</code> <br>
+<code>autohide: 0</code> <br>
 
 =====
 
