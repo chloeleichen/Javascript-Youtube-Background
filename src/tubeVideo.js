@@ -167,7 +167,7 @@
                 pHeight = Math.ceil(width / self.options.ratio); // get new player height
                 self._getPlayer().setSize(width,pHeight);
                 player.style.left = 0;
-                player.style.top = 0;
+                player.style.top = ((height - pHeight) / 2) + 'px';
 
               }
             },
