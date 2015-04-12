@@ -4,47 +4,85 @@
   * @function extend
   * Deep extend(recursive),by http://andrewdupont.net/2009/08/28/deep-extending-objects-in-javascript/
   */
-    
-    function extend (destination, source) {
-      for (var property in source) {
-        if (source[property] && source[property].constructor &&
-         source[property].constructor === Object) {
-          destination[property] = destination[property] || {};
-        arguments.callee(destination[property], source[property]);
-      } else {
-        destination[property] = source[property];
-      }
+  
+  function extend (destination, source) {
+    for (var property in source) {
+      if (source[property] && source[property].constructor &&
+       source[property].constructor === Object) {
+        destination[property] = destination[property] || {};
+      arguments.callee(destination[property], source[property]);
+    } else {
+      destination[property] = source[property];
     }
-    return destination;
-  };
+  }
+  return destination;
+};
+
+  /** @function Deferred
+  * js implementation of the jQuery Deferred object
+  * https://api.jquery.com/category/deferred-object/
+  */
+
+  function Deferred(){
+    this._done = [];
+    this._fail = [];
+  }
+  Deferred.prototype = {
+    execute: function(list, args){
+      var i = list.length;
+
+      // convert arguments to an array
+      // so they can be sent to the
+      // callbacks via the apply method
+      args = Array.prototype.slice.call(args);
+
+      while(i--) list[i].apply(null, args);
+    },
+    resolve: function(){
+      this.execute(this._done, arguments);
+    },
+    reject: function(){
+      this.execute(this._fail, arguments);
+    }, 
+    done: function(callback){
+      this._done.push(callback);
+    },
+    fail: function(callback){
+      this._fail.push(callback);
+    }  
+  }
 
   /**
   * @function loadAPI
   * load youtube javascript API 
   */
 
-    var loadAPI = function loadAPI(callback){
-      var tag = document.createElement('script');
-      tag.src = "http://www.youtube.com/iframe_api";
-      var firstScriptTag = document.getElementsByTagName('script')[0];
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-      iframeIsReady(callback);
+  var loadAPI = function loadAPI(callback){
+    var tag = document.createElement('script');
+    tag.src = "http://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    iframeIsReady(callback);
 
-    }
+  }
 
-    var iframeIsReady = function iframeIsReady(callback){
+  var iframeIsReady = function iframeIsReady(callback){
         // Listen for Gobal YT player callback
         if (typeof YT === 'undefined' && typeof window.loadingPlayer === 'undefined') {
         // Prevents Ready Event from being called twice
         window.loadingPlayer = true;
+        window.d = new Deferred();
         window.onYouTubeIframeAPIReady = function() {
           window.onYouTubeIframeAPIReady = null;
+          window.d.resolve( "done" );
           callback();
         };
       } else if (typeof YT === 'object')  {
         callback();
       } else {
+        window.d.done(function( name ) {
           callback();
+        });
       }
 
     }
@@ -54,16 +92,8 @@
     * Create TubeVideo
     */ 
     var TubeVideo= function(node, userOptions){
-
-      this.node = node || ' ';
-      this.userOptions = userOptions || ' ';
-      this.options = extend(this.defaults, this.userOptions);
-      this._init();
-      this.node.setAttribute('style', "position: relative; overflow: hidden;");
-    }
-
-    TubeVideo.prototype = {
-      defaults:  {
+      player: null;
+      this.defaults = {
         ratio: 16 / 9,
         videoId: 'gxCaDMB6y18',
         mute: true,
@@ -88,7 +118,16 @@
                 //origin: window.location.origin
               },
               events: null
-            },
+            }
+
+            this.node = node || ' ';
+            this.userOptions = userOptions || ' ';
+            this.options = extend(this.defaults, this.userOptions);
+            this._init();
+            this.node.setAttribute('style', "position: relative; overflow: hidden;");
+          }
+
+          TubeVideo.prototype = {
             _addContainer: function(){
               var self = this;
               var playerWrapper = document.createElement('div');
@@ -98,7 +137,6 @@
               var playerInner = document.createElement('div');
               playerInner.setAttribute("id", self.holderID);
               self.node.appendChild(playerWrapper).appendChild(playerInner);
-
             },
 
         /**
@@ -134,9 +172,12 @@
         /**
         * onYouTubeIframeAPIReady – The API will call this function when the page has finished downloading the JavaScript for the player API, which enables you to then use the API on your page. Thus, this function might create the player objects that you want to display when the page loads.
         */
-         _onYouTubeIframeAPIReady: function() {
+        _onYouTubeIframeAPIReady: function() {
           var self = this;
+          self.player = null;
           self.player = new window.YT.Player(self.holderID, self.options);
+          console.log(self.player);
+
         },
 
         /**
@@ -164,15 +205,6 @@
          */
          _init: function(){
           var self = this;
-          self.ID = (new Date()).getTime();
-          self.options.height = Math.ceil(self.node.offsetWidth/ self.options.ratio);
-          self.holderID = 'tubeVideo-ID-' + self.ID;
-          self._addContainer();
-          loadAPI(self._onYouTubeIframeAPIReady.bind(self));
-          window.addEventListener('resize', function(event){
-            self._resize(self);
-          });
-
           self.defaults.events = {
             onReady: function(e) {
               self._resize(self);
@@ -190,7 +222,18 @@
               }
             }
           }
-        }
+          self.ID = (new Date()).getTime();
+          self.options.height = Math.ceil(self.node.offsetWidth/ self.options.ratio);
+          self.holderID = 'tubeVideo-ID-' + self.ID;
+          self._addContainer();
+          window.addEventListener('resize', function(event){
+            self._resize(self);
+          }); 
+          loadAPI(self._onYouTubeIframeAPIReady.bind(self));
+          return self;
+          
+        },
+        
       }
 
       window.TubeVideo = TubeVideo;

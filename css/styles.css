@@ -1,6 +1,7 @@
 @import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
 body {
 	font-family: 'Lato', Calibri, Arial, sans-serif;
+	background: #000000;
 }
 
 li{
@@ -10,8 +11,20 @@ li{
 
 }
 
-.content{
+#player2{
+	width: 80%;
+	margin: 30px auto;
+	border: 5px solid #ffffff;
+
+}
+
+.content-light{
 		color: #ffffff;
+		padding: 30px;
+	}
+
+.content-dark{
+		color: #000000;
 		padding: 30px;
 	}
 
@@ -20,4 +33,12 @@ ul{
 	width: 100%;
 	padding: 0;
 }
+
+.main{
+	width: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+
 

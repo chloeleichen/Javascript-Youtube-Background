@@ -5,27 +5,33 @@
     <title>Project</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Learning project">
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
     <link rel="stylesheet" type="text/css" href="css/styles.css" />
   </head>
   <body>
     <!-- add-youtube video bg -->
-        <nav id="mp-menu" class="mp-menu">
+        <div class="main">
           <ul>
             <li id="player"> 
-              <div class="content">
+              <div class="content-light">
                 <h1>Javascript Youttube background</h1> 
                 <p>By <a href="http://chloechen.io">Chloe Chen</a></p>
                 <p><a href="https://github.com/chloeleichen/Javascript-Youtube-Background">Download on Github</a></p>
                 <div> 
               </li>
+              <li id="player2"> 
+                <div class="content-dark"> <p>A video background in a container </p></div></li>
           </ul>
-        </nav>
+        </div>
 
 	  <script src="src/tubeVideo.js"></script>
     <script>
 
     var el = document.getElementById("player");
     var player = new TubeVideo(el, {videoId: 'gxCaDMB6y18'});
+
+    var el2 = document.getElementById('player2');
+    var player2 = new TubeVideo(el2, {videoId: '8SVnrNaNv7A'});
    
     </script>
 
