@@ -1,12 +1,12 @@
 # Javascript-Youtube-Background
 AKA TubeVideo
 
-<strong>light-weight vannila javascript youtube backgroud maker (no need for jQuery or any other libraies, only 2KB minified), supports multiple video player instances on one page<strong>
+<strong>light-weight vannila javascript youtube backgroud maker (no need for jQuery or any other libraies, only 2KB minified), supports multiple video player instances on one page</strong>
 
 Created by <a href="http://chloechen.io">Chloe Chen</a>
 
 =====
-<strong>Demo: <strong>
+<strong>Demo: </strong>
 http://chloechen.io/tubeVideo/
 
 Integrate or build upon it for free in your personal or commercial projects.
@@ -25,7 +25,7 @@ It is super simpel to use: all it needs is the id of your Youtube video(<a href=
 </code>
 
 ======
-<strong>Configurable <strong>
+<strong>Configurable </strong>
 
 <code>ratio: 16 / 9,</code> <br>
 <code>videoId: 'gxCaDMB6y18',</code> <br>
